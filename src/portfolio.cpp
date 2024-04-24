@@ -13,3 +13,9 @@ Portfolio createPortfolio(string code, string name)
   portfolio.investments = {};
   return portfolio;
 }
+
+Portfolio displayPortofolio(Portfolio portfolio)
+{
+  cout << "Portfolio: " << portfolio.name << " (" << portfolio.code << ")" << endl;
+  return portfolio;
+}

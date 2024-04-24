@@ -34,6 +34,17 @@ void managePortfolioMenu(vector<Portfolio> &portfolios)
     {
     case 1:
     {
+      if (portfolios.size() == 0)
+      {
+        cout << "\nNo portfolios to display.\n";
+        break;
+      }
+
+      cout << "\nPortfolios:\n";
+      for (int i = 0; i < portfolios.size(); i++)
+      {
+        cout << i + 1 << ". " << portfolios[i].name << " (" << portfolios[i].code << ")" << endl;
+      }
       break;
     }
     case 2:
