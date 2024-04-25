@@ -14,7 +14,7 @@ enum InvestmentType
 
 struct Investment
 {
-  int code;
+  string code;
   string name;
   InvestmentType type;
   int purchasePrice;

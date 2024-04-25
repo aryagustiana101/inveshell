@@ -36,7 +36,7 @@ Portfolio *findPortfolioByCode(vector<Portfolio> &portfolios, const string &code
 void createPortfolio(vector<Portfolio> &portfolios)
 {
   Portfolio newPortfolio;
-  newPortfolio.code = generateCode(6);
+  newPortfolio.code = generateCode(3);
   cout << "\nEnter portfolio name: ";
   getline(cin, newPortfolio.name);
   newPortfolio.head = nullptr;
