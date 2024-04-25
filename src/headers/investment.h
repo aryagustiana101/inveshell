@@ -10,5 +10,6 @@ void displayAllInvestments(vector<Portfolio> &portfolios);
 void createInvestment(vector<Portfolio> &portfolios);
 void updateInvestment(vector<Portfolio> &portfolios);
 void deleteInvestment(vector<Portfolio> &portfolios);
+void calculateReturnOnInvestment(vector<Portfolio> &portfolios);
 
 #endif

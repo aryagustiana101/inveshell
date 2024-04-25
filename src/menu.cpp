@@ -151,7 +151,7 @@ void mainMenu(vector<Portfolio> &portfolios)
       manageInvestmentMenu(portfolios);
       break;
     case 3:
-      cout << "\nExiting Inveshell. Goodbye!\n\n";
+      calculateReturnOnInvestment(portfolios);
       break;
     case 4:
       cout << "\nExiting Inveshell. Goodbye!\n\n";
