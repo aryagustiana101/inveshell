@@ -22,11 +22,19 @@ struct Investment
   int quantity;
 };
 
+struct InvestmentNode
+{
+  Investment data;
+  InvestmentNode *next;
+  InvestmentNode *prev;
+};
+
 struct Portfolio
 {
   string code;
   string name;
-  vector<Investment> investments;
+  InvestmentNode *head;
+  InvestmentNode *tail;
 };
 
 #endif

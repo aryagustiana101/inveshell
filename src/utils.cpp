@@ -1,8 +1,21 @@
+#include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-bool isEmptyString(const string &str)
+string generateCode(int length)
 {
-  return str.empty();
+  const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  string result;
+  srand(time(nullptr));
+
+  for (int i = 0; i < length; ++i)
+  {
+    int randomIndex = rand() % (sizeof(alphabet) - 1);
+    result += *(alphabet + randomIndex);
+  }
+
+  return result;
 }

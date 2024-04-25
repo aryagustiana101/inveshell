@@ -17,9 +17,10 @@ void managePortfolioMenu(vector<Portfolio> &portfolios)
 
     cout << "\nPortfolio Management Menu:\n";
     cout << "1. Display All Portfolios\n";
-    cout << "2. Select Portfolio\n";
-    cout << "3. Create Portfolio\n";
-    cout << "4. Back to Main Menu\n";
+    cout << "2. Create Portfolio\n";
+    cout << "3. Update Portfolio\n";
+    cout << "4. Delete Portfolio\n";
+    cout << "5. Back to Main Menu\n";
     cout << "\nEnter your choice: ";
     getline(cin, _choice);
 
@@ -34,47 +35,36 @@ void managePortfolioMenu(vector<Portfolio> &portfolios)
     {
     case 1:
     {
-      if (portfolios.size() == 0)
-      {
-        cout << "\nNo portfolios to display.\n";
-        break;
-      }
-
-      cout << "\nPortfolios:\n";
-      for (int i = 0; i < portfolios.size(); i++)
-      {
-        cout << i + 1 << ". " << portfolios[i].name << " (" << portfolios[i].code << ")" << endl;
-      }
+      displayAllPortfolios(portfolios);
       break;
     }
     case 2:
     {
+      createPortfolio(portfolios);
       break;
     }
     case 3:
     {
-      string code, name;
-      cout << "\nEnter portfolio code: ";
-      getline(cin, code);
-      cout << "Enter portfolio name: ";
-      getline(cin, name);
-      portfolios.push_back(createPortfolio(code, name));
-      cout << "\nNew portfolio created.\n";
+      updatePortfolio(portfolios);
       break;
     }
     case 4:
+    {
+      deletePortfolio(portfolios);
+      break;
+    }
+    case 5:
       cout << "\nReturning to main menu.\n";
       return;
     default:
       cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
     }
-  } while (choice != 4);
+  } while (choice != 5);
 }
 
-void mainMenu()
+void mainMenu(vector<Portfolio> &portfolios)
 {
   int choice;
-  vector<Portfolio> portfolios;
 
   do
   {
@@ -82,8 +72,9 @@ void mainMenu()
 
     cout << "\nMain Menu:\n";
     cout << "1. Manage Portfolio\n";
-    cout << "2. Calculate Return on Investment\n";
-    cout << "3. Exit\n";
+    cout << "2. Manage Investment\n";
+    cout << "3. Calculate Return on Investment\n";
+    cout << "4. Exit\n";
     cout << "\nEnter your choice: ";
     getline(cin, _choice);
 
@@ -105,8 +96,11 @@ void mainMenu()
     case 3:
       cout << "\nExiting Inveshell. Goodbye!\n\n";
       break;
+    case 4:
+      cout << "\nExiting Inveshell. Goodbye!\n\n";
+      break;
     default:
       cout << "\nInvalid choice. Please enter a number from 1 to 3.\n";
     }
-  } while (choice != 3);
+  } while (choice != 4);
 }
