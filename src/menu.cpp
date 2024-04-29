@@ -58,7 +58,7 @@ void managePortfolioMenu(vector<Portfolio> &portfolios)
       cout << "\nReturning to main menu.\n";
       return;
     default:
-      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+      cout << "\nInvalid choice. Please enter a number from 1 to 5.\n";
     }
   } while (choice != 5);
 }
@@ -113,7 +113,7 @@ void manageInvestmentMenu(vector<Portfolio> &portfolios)
       cout << "\nReturning to main menu.\n";
       return;
     default:
-      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+      cout << "\nInvalid choice. Please enter a number from 1 to 5.\n";
     }
   } while (choice != 5);
 }
@@ -157,7 +157,7 @@ void mainMenu(vector<Portfolio> &portfolios)
       cout << "\nExiting Inveshell. Goodbye!\n\n";
       break;
     default:
-      cout << "\nInvalid choice. Please enter a number from 1 to 3.\n";
+      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
     }
   } while (choice != 4);
 }
