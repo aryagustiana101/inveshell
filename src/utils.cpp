@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include "headers/data.h"
 
 using namespace std;
 
@@ -18,4 +19,47 @@ string generateCode(int length)
   }
 
   return result;
+}
+
+void appendToList(LinkedListNode *&head, double val)
+{
+  LinkedListNode *newNode = new LinkedListNode(val);
+
+  if (head == nullptr)
+  {
+    head = newNode;
+  }
+  else
+  {
+    LinkedListNode *current = head;
+    while (current->next != nullptr)
+    {
+      current = current->next;
+    }
+    current->next = newNode;
+  }
+}
+
+double calculateTotalFromList(const LinkedListNode *head)
+{
+  double total = 0.0;
+  const LinkedListNode *current = head;
+
+  while (current != nullptr)
+  {
+    total += current->data;
+    current = current->next;
+  }
+
+  return total;
+}
+
+void deleteList(LinkedListNode *&head)
+{
+  while (head != nullptr)
+  {
+    LinkedListNode *temp = head;
+    head = head->next;
+    delete temp;
+  }
 }

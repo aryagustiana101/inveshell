@@ -37,4 +37,12 @@ struct Portfolio
   InvestmentNode *tail;
 };
 
+struct LinkedListNode
+{
+  double data;
+  LinkedListNode *next;
+
+  LinkedListNode(double val) : data(val), next(nullptr) {}
+};
+
 #endif

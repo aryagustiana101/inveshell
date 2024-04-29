@@ -180,7 +180,8 @@ void calculateReturnOnInvestment(vector<Portfolio> &portfolios)
   cout << "Enter the code of the portfolio to calculate ROI: ";
   getline(cin, portfolioCode);
 
-  const Portfolio *portfolio = findPortfolioByCode(portfolios, portfolioCode);
+  Portfolio *portfolio = findPortfolioByCode(portfolios, portfolioCode);
+
   if (portfolio == nullptr)
   {
     cout << "\nPortfolio with code " << portfolioCode << " not found.\n";
@@ -192,17 +193,24 @@ void calculateReturnOnInvestment(vector<Portfolio> &portfolios)
     cout << "\nPortfolio " << portfolio->name << " does not contain any investments.\n";
     return;
   }
+
+  LinkedListNode *totalInvestmentHead = nullptr;
+  LinkedListNode *totalCurrentValueHead = nullptr;
+
   InvestmentNode *current = portfolio->head;
-  double totalInvestment = 0.0;
-  double totalCurrentValue = 0.0;
   while (current != nullptr)
   {
     double investment = current->data.purchasePrice * current->data.quantity;
     double currentValue = current->data.currentValue * current->data.quantity;
-    totalInvestment += investment;
-    totalCurrentValue += currentValue;
+
+    appendToList(totalInvestmentHead, investment);
+    appendToList(totalCurrentValueHead, currentValue);
+
     current = current->next;
   }
+
+  double totalInvestment = calculateTotalFromList(totalInvestmentHead);
+  double totalCurrentValue = calculateTotalFromList(totalCurrentValueHead);
 
   double roi = ((totalCurrentValue - totalInvestment) / totalInvestment) * 100.0;
 
