@@ -4,10 +4,62 @@
 #include <iostream>
 #include "headers/data.h"
 #include "headers/auth.h"
+#include "headers/balance.h"
 #include "headers/portfolio.h"
 #include "headers/investment.h"
 
 using namespace std;
+
+void manageBalanceMenu(Account *account)
+{
+  int choice;
+
+  do
+  {
+    string _choice;
+
+    cout << "\nAccount Balance Management Menu:\n";
+    cout << "1. Display Current Balance\n";
+    cout << "2. Increment Balance\n";
+    cout << "3. Decrement Balance\n";
+    cout << "4. Back to Main Menu\n";
+    cout << "\nEnter your choice: ";
+    getline(cin, _choice);
+
+    stringstream ss(_choice);
+    if (!(ss >> choice))
+    {
+      cout << "\nInvalid input. Please enter a number.\n";
+      continue;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      displayBalance(account);
+      break;
+    }
+    case 2:
+    {
+      incrementBalance(account);
+      break;
+    }
+    case 3:
+    {
+      decrementBalance(account);
+      break;
+    }
+    case 4:
+    {
+      cout << "\nReturning to main menu.\n";
+      break;
+    }
+    default:
+      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+    }
+  } while (choice != 4);
+}
 
 void managePortfolioMenu(vector<Portfolio> &portfolios)
 {
@@ -128,10 +180,11 @@ void mainMenu(Account *account)
     string _choice;
 
     cout << "\nMain Menu:\n";
-    cout << "1. Manage Portfolio\n";
-    cout << "2. Manage Investment\n";
-    cout << "3. Calculate Return on Investment\n";
-    cout << "4. Sign out\n";
+    cout << "1. Manage Account Balance\n";
+    cout << "2. Manage Portfolio\n";
+    cout << "3. Manage Investment\n";
+    cout << "4. Calculate Return on Investment\n";
+    cout << "5. Sign out\n";
     cout << "\nEnter your choice: ";
     getline(cin, _choice);
 
@@ -146,21 +199,24 @@ void mainMenu(Account *account)
     switch (choice)
     {
     case 1:
-      managePortfolioMenu(account->portfolios);
+      manageBalanceMenu(account);
       break;
     case 2:
-      manageInvestmentMenu(account->portfolios);
+      managePortfolioMenu(account->portfolios);
       break;
     case 3:
-      calculateReturnOnInvestment(account->portfolios);
+      manageInvestmentMenu(account->portfolios);
       break;
     case 4:
+      calculateReturnOnInvestment(account->portfolios);
+      break;
+    case 5:
       cout << "\nSign out successful.\n";
       break;
     default:
-      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+      cout << "\nInvalid choice. Please enter a number from 1 to 5.\n";
     }
-  } while (choice != 4);
+  } while (choice != 5);
 }
 
 void authMenu(vector<Account> &accounts)
@@ -204,7 +260,7 @@ void authMenu(vector<Account> &accounts)
       cout << "\nExiting Inveshell. Goodbye!\n\n";
       break;
     default:
-      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+      cout << "\nInvalid choice. Please enter a number from 1 to 3.\n";
     }
   } while (choice != 3);
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 #include "headers/data.h"
 
 using namespace std;
@@ -62,4 +63,13 @@ void deleteList(LinkedListNode *&head)
     head = head->next;
     delete temp;
   }
+}
+
+bool isValidNumber(const string &str)
+{
+  stringstream ss(str);
+  int num;
+  ss >> noskipws >> num;
+
+  return ss.eof() && !ss.fail() && num >= 0;
 }
