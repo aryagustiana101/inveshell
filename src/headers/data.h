@@ -37,6 +37,14 @@ struct Portfolio
   InvestmentNode *tail;
 };
 
+struct Account
+{
+  string username;
+  string pin;
+  int balance;
+  vector<Portfolio> portfolios;
+};
+
 struct LinkedListNode
 {
   double data;

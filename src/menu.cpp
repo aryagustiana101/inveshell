@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include "headers/data.h"
+#include "headers/auth.h"
 #include "headers/portfolio.h"
 #include "headers/investment.h"
 
@@ -118,7 +119,7 @@ void manageInvestmentMenu(vector<Portfolio> &portfolios)
   } while (choice != 5);
 }
 
-void mainMenu(vector<Portfolio> &portfolios)
+void mainMenu(Account *account)
 {
   int choice;
 
@@ -130,7 +131,7 @@ void mainMenu(vector<Portfolio> &portfolios)
     cout << "1. Manage Portfolio\n";
     cout << "2. Manage Investment\n";
     cout << "3. Calculate Return on Investment\n";
-    cout << "4. Exit\n";
+    cout << "4. Sign out\n";
     cout << "\nEnter your choice: ";
     getline(cin, _choice);
 
@@ -145,19 +146,65 @@ void mainMenu(vector<Portfolio> &portfolios)
     switch (choice)
     {
     case 1:
-      managePortfolioMenu(portfolios);
+      managePortfolioMenu(account->portfolios);
       break;
     case 2:
-      manageInvestmentMenu(portfolios);
+      manageInvestmentMenu(account->portfolios);
       break;
     case 3:
-      calculateReturnOnInvestment(portfolios);
+      calculateReturnOnInvestment(account->portfolios);
       break;
     case 4:
-      cout << "\nExiting Inveshell. Goodbye!\n\n";
+      cout << "\nSign out successful.\n";
       break;
     default:
       cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
     }
   } while (choice != 4);
+}
+
+void authMenu(vector<Account> &accounts)
+{
+  int choice;
+
+  do
+  {
+    string _choice;
+
+    cout << "\nAuth Menu:\n";
+    cout << "1. Sign In\n";
+    cout << "2. Sign Up\n";
+    cout << "3. Exit\n";
+    cout << "\nEnter your choice: ";
+    getline(cin, _choice);
+
+    stringstream ss(_choice);
+
+    if (!(ss >> choice))
+    {
+      cout << "\nInvalid input. Please enter a number.\n";
+      continue;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      Account *account = signIn(accounts);
+      if (account != nullptr)
+      {
+        mainMenu(account);
+      }
+      break;
+    }
+    case 2:
+      signUp(accounts);
+      break;
+    case 3:
+      cout << "\nExiting Inveshell. Goodbye!\n\n";
+      break;
+    default:
+      cout << "\nInvalid choice. Please enter a number from 1 to 4.\n";
+    }
+  } while (choice != 3);
 }

@@ -5,7 +5,8 @@
 
 using namespace std;
 
-void mainMenu(vector<Portfolio> &portfolios);
+void authMenu(vector<Account> &accounts);
+void mainMenu(Account *account);
 void managePortfolioMenu(vector<Portfolio> &portfolios);
 
 #endif

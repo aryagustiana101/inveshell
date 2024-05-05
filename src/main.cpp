@@ -7,13 +7,21 @@ using namespace std;
 
 int main()
 {
-  vector<Portfolio> portfolios;
+  vector<Account> accounts;
+
+  Account demoAccount;
+
+  demoAccount.username = "demo";
+  demoAccount.pin = "123";
+  demoAccount.balance = 0;
+
+  accounts.push_back(demoAccount);
 
   banner();
 
   cout << "\nWelcome to Inveshell - Portfolio Investment Management App\n";
 
-  mainMenu(portfolios);
+  authMenu(accounts);
 
   return 0;
 }
