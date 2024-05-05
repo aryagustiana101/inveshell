@@ -49,13 +49,13 @@ void displayAllInvestments(vector<Portfolio> &portfolios)
   }
 }
 
-void createInvestment(vector<Portfolio> &portfolios)
+void createInvestment(Account *account)
 {
   string portfolioCode;
   cout << "\nEnter the code of the portfolio to add the investment: ";
   getline(cin, portfolioCode);
 
-  Portfolio *portfolio = findPortfolioByCode(portfolios, portfolioCode);
+  Portfolio *portfolio = findPortfolioByCode(account->portfolios, portfolioCode);
   if (portfolio == nullptr)
   {
     cout << "\nPortfolio with code " << portfolioCode << " not found.\n";
@@ -78,7 +78,18 @@ void createInvestment(vector<Portfolio> &portfolios)
   cout << "Enter quantity: ";
   cin >> investment.quantity;
 
+  int totalInvestment = investment.purchasePrice * investment.quantity;
+
+  if (account->balance < totalInvestment)
+  {
+    cout << "\nInsufficient account balance to make the investment. Operation aborted.\n";
+    return;
+  }
+
+  account->balance -= totalInvestment;
+
   InvestmentNode *newNode = createInvestmentNode(investment);
+
   if (portfolio->head == nullptr)
   {
     portfolio->head = newNode;
@@ -91,7 +102,7 @@ void createInvestment(vector<Portfolio> &portfolios)
     portfolio->tail = newNode;
   }
 
-  cout << "New investment added to portfolio " << portfolio->name << ".\n";
+  cout << "\nNew investment added to portfolio " << portfolio->name << endl;
 }
 
 void updateInvestment(vector<Portfolio> &portfolios)
@@ -212,7 +223,9 @@ void calculateReturnOnInvestment(vector<Portfolio> &portfolios)
   double totalInvestment = calculateTotalFromList(totalInvestmentHead);
   double totalCurrentValue = calculateTotalFromList(totalCurrentValueHead);
 
-  double roi = ((totalCurrentValue - totalInvestment) / totalInvestment) * 100.0;
+  double totalReturnOnInvestment = totalCurrentValue - totalInvestment;
+  double roi = (totalReturnOnInvestment / totalInvestment) * 100.0;
 
-  cout << "\nTotal Return on Investment for portfolio " << portfolio->name << ": " << roi << "%\n";
+  cout << "\nTotal Return on Investment for portfolio " << portfolio->name << ":\n";
+  cout << roi << "% (" << totalReturnOnInvestment << ")\n";
 }

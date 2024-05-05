@@ -7,7 +7,7 @@
 using namespace std;
 
 void displayAllInvestments(vector<Portfolio> &portfolios);
-void createInvestment(vector<Portfolio> &portfolios);
+void createInvestment(Account *account);
 void updateInvestment(vector<Portfolio> &portfolios);
 void deleteInvestment(vector<Portfolio> &portfolios);
 void calculateReturnOnInvestment(vector<Portfolio> &portfolios);

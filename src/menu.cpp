@@ -116,7 +116,7 @@ void managePortfolioMenu(vector<Portfolio> &portfolios)
   } while (choice != 5);
 }
 
-void manageInvestmentMenu(vector<Portfolio> &portfolios)
+void manageInvestmentMenu(Account *account)
 {
   int choice;
 
@@ -144,22 +144,22 @@ void manageInvestmentMenu(vector<Portfolio> &portfolios)
     {
     case 1:
     {
-      displayAllInvestments(portfolios);
+      displayAllInvestments(account->portfolios);
       break;
     }
     case 2:
     {
-      createInvestment(portfolios);
+      createInvestment(account);
       break;
     }
     case 3:
     {
-      updateInvestment(portfolios);
+      updateInvestment(account->portfolios);
       break;
     }
     case 4:
     {
-      deleteInvestment(portfolios);
+      deleteInvestment(account->portfolios);
       break;
     }
     case 5:
@@ -205,7 +205,7 @@ void mainMenu(Account *account)
       managePortfolioMenu(account->portfolios);
       break;
     case 3:
-      manageInvestmentMenu(account->portfolios);
+      manageInvestmentMenu(account);
       break;
     case 4:
       calculateReturnOnInvestment(account->portfolios);

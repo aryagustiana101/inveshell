@@ -5,8 +5,10 @@
 
 using namespace std;
 
-void authMenu(vector<Account> &accounts);
-void mainMenu(Account *account);
+void manageBalanceMenu(Account *account);
 void managePortfolioMenu(vector<Portfolio> &portfolios);
+void manageInvestmentMenu(Account *account);
+void mainMenu(Account *account);
+void authMenu(vector<Account> &accounts);
 
 #endif
